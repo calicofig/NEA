@@ -133,4 +133,5 @@ class Simulator:
         #The initial coordinates for the hyphae to begin at 
         starting_x = self.width // 2
         starting_y = self.height // 2
-        
+
+#writing a new line to save the repository
