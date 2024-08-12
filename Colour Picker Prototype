@@ -1,0 +1,48 @@
+import tkinter as tk
+from tkinter import StringVar, Label, Button, Checkbutton
+
+def update_button_color():
+    # Update the button's background color based on the selected color
+    selected_color = color_var.get()
+    color_button.config(bg=selected_color)
+
+def on_checkbutton_click(color):
+    # Set the color variable when a checkbox is clicked
+    color_var.set(color)
+    update_button_color()
+
+# Create the main window
+root = tk.Tk()
+root.title("Color Picker")
+root.geometry("300x200")
+
+# Create a label to instruct the user
+instruction_label = Label(root, text="Select a color to change the button:")
+instruction_label.pack(pady=10)
+
+# Variable to hold the selected color
+color_var = StringVar(value="white")
+
+# Define colors 
+colors = {
+    "Red": "red",
+    "Green": "green",
+    "Blue": "blue",
+    "Yellow": "yellow",
+    "Purple": "purple"
+}
+
+# Create and place checkbuttons
+for color_name, color_code in colors.items():
+    checkbutton = Checkbutton(
+        root, text=color_name, variable=color_var, 
+        onvalue=color_code, command=lambda c=color_code: on_checkbutton_click(c)
+    )
+    checkbutton.pack(anchor="w")
+
+# Create a button that will change color
+color_button = Button(root, text="Click Me!", width=20, height=2, bg=color_var.get())
+color_button.pack(pady=20)
+
+# Run the Tkinter event loop
+root.mainloop()
